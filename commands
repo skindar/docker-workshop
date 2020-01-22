@@ -1,0 +1,72 @@
+for i in `docker ps -a | cut -d " " -f 1| tail -n +2` ; do docker stop $i && docker rm $i ; done    -- delete all containers
+
+to create a volume via CLI
+docker volume create myvolume-hello
+
+to mount it
+docker run -v owasp-hello:<mount-point> ...
+
+
+docker volume inspect myvolume-hello
+docker volume rm owasp-hello 
+
+Why Use Volumes
+
+mount local source code into a running container
+improve performance
+Data persistence
+Volumes are easier to back up or migrate than bind mounts.
+You can manage volumes using Docker CLI commands or the Docker API.
+Volumes work on both Linux and Windows containers.
+Volumes can be more safely shared among multiple containers.
+Volume drivers let you store volumes on remote hosts or cloud providers, to encrypt the contents of volumes, or to add other functionality
+New volumes can have their content pre-populated by a container.
+
+NETWORKS
+docker network ls 
+ docker network inspect bridge
+
+ The output above shows the bridge, host, macvlan, null, and overlay drivers.
+
+bridge: The default network driver. If you don’t specify a driver, this is the type of network you are creating. 
+Bridge networks are usually used when your applications run in standalone containers that need to communicate. 
+See bridge networks.
+host: For standalone containers, remove network isolation between the container and the Docker host, and use 
+the host’s networking directly. host is only available for swarm services on Docker 17.06 and higher. 
+See use the host network.
+
+overlay: Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each other. 
+You can also use overlay networks to facilitate communication between a swarm service and a standalone container, or between 
+two standalone containers on different Docker daemons. This strategy removes the need to do OS-level routing between these 
+containers. See overlay networks.
+
+macvlan: Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on your 
+network. The Docker daemon routes traffic to containers by their MAC addresses. Using the macvlan driver is sometimes the best 
+choice when dealing with legacy applications that expect to be directly connected to the physical network, rather than routed 
+through the Docker host’s network stack. See Macvlan networks.
+
+none: For this container, disable all networking. Usually used in conjunction with a custom network driver. none is 
+not available for swarm services. See disable container networking.
+
+Use docker attach to attach your terminal’s standard input, output, and error (or any combination of the three) to a 
+running container using the container’s ID or name. This allows you to view its ongoing output or to control it interactively, 
+as though the commands were running directly in your terminal.
+
+docker network create -d bridge --subnet 10.0.0.0/24 my_bridge
+docker run -itd --name c2 --net my_bridge busybox sh
+docker run -itd --name c3 --net my_bridge --ip 10.0.0.254 busybox sh
+docker attach c3
+
+another terminal
+docker attach c2
+ifconfig
+Now we can ping those ping 10.0.0.254
+
+docker network ls 
+new bridge was added
+
+
+There are two ways to create a Docker image!!!:
+
+Via the docker commit command
+Via the docker build command with a Dockerfile
