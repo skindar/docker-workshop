@@ -1,4 +1,4 @@
-You can run that default template by using command bellow
+You can run that default template by using next command
     docker run -d -p 8080:80 fiedietsov/centos8-nginxphpfpm:latest
 
 For your app you should mount folder to path /var/www/public and check nginx configs
