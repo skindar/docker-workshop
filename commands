@@ -105,4 +105,6 @@ docker run \
 
 GUI CONTAINERS
   docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer --no-auth --logo "https://www.nplusone.ma/wp-content/uploads/2015/04/logonplusone1.png" 
-  
+  mypassword is plaintext here
+$ echo -n mypassword > /tmp/portainer_password
+$ docker run -d -p 9002:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/portainer_password:/tmp/portainer_password   portainer/portainer --logo "https://www.nplusone.ma/wp-content/uploads/2015/04/logonplusone1.png" --admin-password-file /tmp/portainer_password 
