@@ -1,5 +1,5 @@
 FROM fiedietsov/centos8-phpfpm:latest
-LABEL maintainer="Valentyn Fiedietsov <valentin@vine.com>"
+LABEL maintainer="Valentin Fiedietsov <valentin@vine.com>"
 COPY ./src/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./src/nginx/app.conf /etc/nginx/conf.d/app.conf
 RUN dnf -y install nginx
