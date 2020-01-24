@@ -1,0 +1,5 @@
+Delete all containers (force!! running or stopped containers)
+docker rm -f $(docker ps -qa)
+
+Delete all images
+docker rmi $(docker images -q)
