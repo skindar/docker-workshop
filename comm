@@ -1,5 +1,11 @@
+cron job command > /dev/null 2>&1
 Delete all containers (force!! running or stopped containers)
 docker rm -f $(docker ps -qa)
 
 Delete all images
 docker rmi $(docker images -q)
+
+# copy file from container
+docker run --rm httpd cat /usr/local/apache2/conf/httpd.conf > httpd.conf
+mkv_user
+Vz?jBFH'9tm>QGy5
