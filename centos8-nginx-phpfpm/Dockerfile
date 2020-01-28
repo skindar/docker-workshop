@@ -12,7 +12,8 @@ RUN dnf -y install python3-pip
 RUN pip3 install supervisor
 
 COPY src/supervisord.conf /etc/supervisord.conf
-CMD supervisord
+COPY src/start.sh /opt/start.sh
+CMD /opt/start.sh
 
 EXPOSE 80
 
