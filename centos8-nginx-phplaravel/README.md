@@ -1,0 +1,1 @@
+docker run -d -v /Users/macbook/devops-workshop/centos8-nginx-phplaravel/public:/var/www/ -p 8080:80 laravel

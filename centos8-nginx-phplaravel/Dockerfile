@@ -1,4 +1,4 @@
-FROM fiedietsov/centos8-nginxphpfpm
+FROM fiedietsov/centos8-nginxphpfpm:latest
 LABEL maintainer="Valentyn Fiedietsov <valentin@vine.com>"
 
 
@@ -11,4 +11,6 @@ RUN php /var/composer/composer-setup.php --filename=composer --install-dir=/usr/
 
 RUN composer global require "laravel/installer=~1.1"
 
-EXPOSE 80 443
+COPY src/nginx/app.conf /etc/nginx/conf.d/app.conf
+
+EXPOSE 80
