@@ -1,11 +1,12 @@
 FROM fiedietsov/centos8-nginxphpfpm:laravel
 
-CMD mkdir -p /var/www/laravel
-COPY public/laravel /var/www/laravel
 
+COPY public /var/www/
+CMD mkdir -p /var/www/laravel
+
+EXPOSE 80
 CMD touch /var/www/laravel/storage/logs/laravel.log && \
-    chown -R nginx:nginx /var/www/laravel/storage && \
+    chown -R nginx:nginx /var/www/laravel && \
     /opt/start.sh
 
     
-EXPOSE 80
