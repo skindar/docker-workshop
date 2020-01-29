@@ -1,7 +1,7 @@
 FROM fiedietsov/centos8-nginxphpfpm:latest
 LABEL maintainer="Valentyn Fiedietsov <valentin@vine.com>"
 
-
+COPY src/nginx/app.conf /etc/nginx/conf.d/app.conf
 #composer and laravel
 RUN dnf -y install git php-mcrypt
 RUN mkdir -p /var/composer
@@ -11,6 +11,5 @@ RUN php /var/composer/composer-setup.php --filename=composer --install-dir=/usr/
 
 RUN composer global require "laravel/installer=~1.1"
 
-COPY src/nginx/app.conf /etc/nginx/conf.d/app.conf
 
 EXPOSE 80
